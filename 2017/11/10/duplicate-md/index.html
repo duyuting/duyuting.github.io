@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        duplicate.md · Dyting&#39;s Blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171017 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Dyting&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">duplicate.md</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Dyting's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            duplicate.md
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+        </p>
+        <!-- 404 -->
+        
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = leecode>leecode</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = c++>c++</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/11/10</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    let postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                    if (postIntroTags) {
+                        postIntroTags.classList.add('post-fade-in');
+                    }
+                    if (postIntroMeat) {
+                        postIntroMeat.classList.add('post-fade-in');
+                    }
+                }
+            }
+
+            WebFont.load({
+                custom: {
+                    families: ['Oswald-Regular']
+                },
+                loading: function () {  //所有字体开始加载
+                    // console.log('loading');
+                },
+                active: function () {  //所有字体已渲染
+                    fontLoaded();
+                },
+                inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                    console.log('inactive: timeout');
+                    fontLoaded();
+                },
+                timeout: 10000 // Set the timeout to two seconds
+            });
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h2 id="Remove-Duplicates-from-Sorted-Array"><a href="#Remove-Duplicates-from-Sorted-Array" class="headerlink" title="Remove Duplicates from Sorted Array"></a>Remove Duplicates from Sorted Array</h2><p>Given a sorted array, remove the duplicates in-place such that each element appear only once and return the new length.</p>
+<h2 id="Do-not-allocate-extra-space-for-another-array-you-must-do-this-by-modifying-the-input-array-in-place-with-O-1-extra-memory"><a href="#Do-not-allocate-extra-space-for-another-array-you-must-do-this-by-modifying-the-input-array-in-place-with-O-1-extra-memory" class="headerlink" title="Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory."></a>Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</h2><p>Example:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Given nums = [1,1,2],</div></pre></td></tr></table></figure></p>
+<p>Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively.<br>It doesn’t matter what you leave beyond the new length.</p>
+<hr>
+<h2 id="1、迭代器遍历实现"><a href="#1、迭代器遍历实现" class="headerlink" title="1、迭代器遍历实现"></a>1、迭代器遍历实现</h2><p>算法：利用vector中的一些封装函数，find函数查找，erase函数删除。主要是循环一遍数据，从第一个开始，从接下来的数据查找是否能找到，如果能找到的话，就删除该数据，否则直接++，继续进行。<br>代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></div><div class="line"><span class="keyword">public</span>:</div><div class="line">	<span class="function"><span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</div><div class="line"></div><div class="line">		<span class="keyword">if</span> (nums.empty()) <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">		<span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it = nums.begin(); it != nums.end();)</div><div class="line">		&#123;</div><div class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator temp;</div><div class="line">			temp = find(it + <span class="number">1</span>, nums.end(),*it );</div><div class="line">			<span class="keyword">if</span> (temp != nums.end())</div><div class="line">			&#123;</div><div class="line">				it = nums.erase(it);</div><div class="line"></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">else</span></div><div class="line">			&#123;</div><div class="line">				it++;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> nums.size();</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p><em>注意</em></p>
+<ul>
+<li>迭代器iterator如何访问元素，用*it。</li>
+<li>find函数存在于algorithm头文件中，返回的也必须是迭代器。</li>
+<li>erase函数是用迭代器调用，并且删除后，it直接指向下一个，所以it++操作不能够继续在这里使用，用法参考上述代码。<br><em>ps</em><br>这个代码也适用无序的数组<h2 id="2、有序的实现"><a href="#2、有序的实现" class="headerlink" title="2、有序的实现"></a>2、有序的实现</h2>直接相邻数字对比，如果相同，就计数，不相等的话直接将数字覆盖前面相等的结果，直接返回n-count<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class Solution2 &#123;</div><div class="line">public:</div><div class="line">	int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;</div><div class="line"></div><div class="line">		if (nums.empty()) return 0;</div><div class="line">		int count = 0;</div><div class="line">		for (int i = 1; i &lt; nums.size(); i++)</div><div class="line">		&#123;</div><div class="line">			if (nums[i] == nums[i - 1]) count++;</div><div class="line">			else</div><div class="line">			&#123;</div><div class="line">				nums[i - count] = nums[i];</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		return nums.size() - count;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/12/07/Pascaltriangle/" title= Pascaltriangle >
+                    <span>Next Post</span>
+                    <span>Pascaltriangle</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/11/07/TensorFlow-define/" title= Tensorflow define >
+                    <span>Previous Post</span>
+                    <span>Tensorflow define</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMTQxNC83OTc4>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:1062637961@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/duyuting" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Remove-Duplicates-from-Sorted-Array"><span class="toc-number">1.</span> <span class="toc-text">Remove Duplicates from Sorted Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Do-not-allocate-extra-space-for-another-array-you-must-do-this-by-modifying-the-input-array-in-place-with-O-1-extra-memory"><span class="toc-number">2.</span> <span class="toc-text">Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1、迭代器遍历实现"><span class="toc-number">3.</span> <span class="toc-text">1、迭代器遍历实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、有序的实现"><span class="toc-number">4.</span> <span class="toc-text">2、有序的实现</span></a></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 8 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2017/12/13/ThirdMax/" >ThirdMax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2017/12/13/DisappearNum/" >DisappearNum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/07</span><a class="archive-post-title" href= "/2017/12/07/Pascaltriangle/" >Pascaltriangle</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span><a class="archive-post-title" href= "/2017/11/10/duplicate-md/" >duplicate.md</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/TensorFlow-define/" >Tensorflow define</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/Lee-code-merge-link/" >Lee code merge link</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2017/10/19/Lee code two Sum/" >Two sum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2017/10/18/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">lee code</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">C++</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">LeeCode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Leecode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">leecode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">c++</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+

@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        Tensorflow define · Dyting&#39;s Blog
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url('/font/Oswald-Regular.ttf');
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171017 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Dyting&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Tensorflow define</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>Dyting's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            Tensorflow define
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+        </p>
+        <!-- 404 -->
+        
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = C++>C++</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = leecode>leecode</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/11/07</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    let postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                    if (postIntroTags) {
+                        postIntroTags.classList.add('post-fade-in');
+                    }
+                    if (postIntroMeat) {
+                        postIntroMeat.classList.add('post-fade-in');
+                    }
+                }
+            }
+
+            WebFont.load({
+                custom: {
+                    families: ['Oswald-Regular']
+                },
+                loading: function () {  //所有字体开始加载
+                    // console.log('loading');
+                },
+                active: function () {  //所有字体已渲染
+                    fontLoaded();
+                },
+                inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                    console.log('inactive: timeout');
+                    fontLoaded();
+                },
+                timeout: 10000 // Set the timeout to two seconds
+            });
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="Tensorflow-概念"><a href="#Tensorflow-概念" class="headerlink" title="Tensorflow 概念"></a>Tensorflow 概念</h1><h2 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h2><pre><code>Tensor是TensorFlow中主要的数据结构，是一个多维数组。例如可以讲一小组图像集表示成一个四维的浮点数数组，这四个维度分别是[batch,height,width,channels].
+</code></pre><p>  创建tensor有两种方式，一是直接用tensorflow自带的函数创建，二是用Python的numpy库创建。<br>  第一种如下：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">tf.zeros([row_dim,col_dim])</div></pre></td></tr></table></figure></p>
+<p>  第二种方式：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">x_data=np.array([[1,2,3],[4,5,6]])</div><div class="line">tf.convert_to_tensor(x_data,dtype=tf.float32)</div></pre></td></tr></table></figure></p>
+<h2 id="graph图"><a href="#graph图" class="headerlink" title="graph图"></a>graph图</h2><p>  一个完整的TF代码主要分成2个部分，定义（构建）和执行。通常在构建阶段创建一个图表示和训练神经网络。<br>  如下图所示：<br>  <img src="http://oyevbpgxc.bkt.clouddn.com/tensor.png" alt="image"><br>  Tensor在一个或者多个由节点和边组成的图中流动，边代表tensors，节点代表对tensors的操作。<br>  如图，节点a接收了一个1-D tensor，该tensor从节点a流出后，分别流向节点b和c。。<br>  一旦开始一个任务，一个默认的图已经创建好了，可以通过调用tf.get_default_graph)()来访问。在默认的图里面添加操作，如下例子所示：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line">c=tf.constant(value=1)</div><div class="line">print(c.graph)</div><div class="line">print(tf.get_default_graph)</div></pre></td></tr></table></figure></p>
+<p>  另一个用法就是可以创建图覆盖默认图：<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">import numpy as np</div><div class="line">with tf.Graph.as_default() as g:</div><div class="line">     d=tf.constant(value=1)</div><div class="line">     print(d.graph)</div></pre></td></tr></table></figure></p>
+<h2 id="Session-会话"><a href="#Session-会话" class="headerlink" title="Session 会话"></a>Session 会话</h2><p>TF阶段分为两个构建和执行，构建是建造图，执行就是启动图，启动图的第一步就是创建一盒Session对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#启动默认图</div><div class="line">sess=tf.Session()</div><div class="line">....</div><div class="line">....</div><div class="line">result=sess.run(d)</div><div class="line">#结束关闭</div><div class="line">sess.close()</div></pre></td></tr></table></figure></p>
+<p>可以用with代码自动关闭程序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">with tf.Session() as sess:</div><div class="line">     result=sess.run([product])</div></pre></td></tr></table></figure></p>
+<p>Session可以交互使用，避免一个变量持有会话。<br>用InteractiveSession代替Session，使用Tensor.eval()和Operation.run()方法代替Session.run().<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">sess=tf.InteractiveSession()</div><div class="line"></div><div class="line">x=tf.Variable([1,2])</div><div class="line">a=tf.constant([3,3])</div><div class="line"></div><div class="line">x.initializer.run()#变量必须初始化才能使用。</div><div class="line"></div><div class="line">sub=tf.sub(x,a)</div><div class="line">print sub.eval()</div></pre></td></tr></table></figure></p>
+<p><strong>在执行run之前操作都不会被真正的执行</strong><br>Session.run()方法有两个参数，分别是fetches和feed_dict. 传递给fetches的参数既可以是tensor也可以是operation，也可以是list。feed_dict 作用是替换图中某个tensor的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">sess.run(fetches=d)</div><div class="line">sess.run(d)</div><div class="line"></div><div class="line">a=tf.add(2,5)</div><div class="line">b=tf.multiply(a,3)</div><div class="line">sess=tf.Session()</div><div class="line">sess.run(b)</div><div class="line"></div><div class="line">replace_dict=&#123;a:15&#125;</div><div class="line">sess.run(b,feed_dict=replace_dict)#结果是45，直接提供a=15，不经过2+5</div><div class="line"></div><div class="line">#feed_dict用来设置graph的输入值</div><div class="line">input1=tf.placeholder(tf.float32)</div><div class="line">input2=tf.placeholder(tf.float32)</div><div class="line">output=tf.mul(input1,input2)</div><div class="line"></div><div class="line">with tf.Session() as sess:</div><div class="line">     print sess.run([output],feed_dict=&#123;input1:[7.],input2:[2.])</div></pre></td></tr></table></figure></p>
+<h2 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h2><p>上面提到placeholder，input1和input2不是 tensor而是placeholder，没有具体的值，在后面的使用和一般的tensor一样，不过在运行的时候，需要用feed_dict 把具体的值提供给placeholder。</p>
+<h2 id="Variable-变量"><a href="#Variable-变量" class="headerlink" title="Variable 变量"></a>Variable 变量</h2><p>可以改变自身状态的值，但是必须要在Session中初始化才能显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">my_var=tf.Variable(1)</div><div class="line">my_var_times_two=my_var.assign(my_var*2)#赋值</div><div class="line">#初始化操作</div><div class="line">init=tf.global_variable_initializer()</div><div class="line">sess=tf.Session()</div><div class="line"></div><div class="line">#初始化变量</div><div class="line">sess.run(init)</div><div class="line"></div><div class="line">print sess.run(my_var_times_two)</div></pre></td></tr></table></figure></p>
+<h1 id="TensorFlow-进阶"><a href="#TensorFlow-进阶" class="headerlink" title="TensorFlow-进阶"></a>TensorFlow-进阶</h1><h2 id="保存和加载模型"><a href="#保存和加载模型" class="headerlink" title="保存和加载模型"></a>保存和加载模型</h2><h3 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h3><p>  利用Saver类实现，它处理图中数据的保存和恢复，我们需要做的就是告诉Saver类我们需要保存哪个图和哪些变量。默认情况下，Sever处理默认图中所有变量，但是，也可以创建更多的图来保存任何想要的子图。<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import tensorflow as tf</div><div class="line">v1=tf.Variable(1,name=&apos;v1&apos;)</div><div class="line">v2=tf.Variable(2,name=&apos;v2&apos;)</div><div class="line">a=tf.add(v1,v2)</div><div class="line"></div><div class="line">all_saver=tf.train.Saver()#保存所有的变量</div><div class="line"></div><div class="line">v2_saver=tf.tf.train.Saver(&quot;v2&quot;:v2)#保存想要保存的变量</div><div class="line"></div><div class="line">with tf.Sessin() as sess:</div><div class="line">     #初始化所有变量</div><div class="line">     sess.run(tf.global_variables_initializer())</div><div class="line">     #保存变量</div><div class="line">     all_saver.save(sess,&apos;data.chpk&apos;)</div><div class="line">     </div><div class="line">     v2_sever.save(sess,&apos;data-v2.chkp&apos;)</div></pre></td></tr></table></figure></p>
+<h3 id="提取"><a href="#提取" class="headerlink" title="提取"></a>提取</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># Create some variables.</div><div class="line">v1 = tf.Variable(..., name=&quot;v1&quot;)</div><div class="line">v2 = tf.Variable(..., name=&quot;v2&quot;)</div><div class="line">...</div><div class="line"># Add ops to save and restore all the variables.</div><div class="line">saver = tf.train.Saver()</div><div class="line"></div><div class="line"># Later, launch the model, use the saver to restore variables from disk, and</div><div class="line"># do some work with the model.</div><div class="line">with tf.Session() as sess:</div><div class="line">  # Restore variables from disk.</div><div class="line">  saver.restore(sess, &quot;/tmp/model.ckpt&quot;)</div><div class="line">  print &quot;Model restored.&quot;</div><div class="line">  # Do some work with the model</div></pre></td></tr></table></figure>
+<p><strong>checkpoint</strong>文件就是用来保存变量的。</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2017/11/10/duplicate-md/" title= duplicate.md >
+                    <span>Next Post</span>
+                    <span>duplicate.md</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/11/07/Lee-code-merge-link/" title= Lee code merge link >
+                    <span>Previous Post</span>
+                    <span>Lee code merge link</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMTQxNC83OTc4>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="emailto:1062637961@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/duyuting" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tensorflow-概念"><span class="toc-number">1.</span> <span class="toc-text">Tensorflow 概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensor"><span class="toc-number">1.1.</span> <span class="toc-text">Tensor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#graph图"><span class="toc-number">1.2.</span> <span class="toc-text">graph图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session-会话"><span class="toc-number">1.3.</span> <span class="toc-text">Session 会话</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#placeholder"><span class="toc-number">1.4.</span> <span class="toc-text">placeholder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Variable-变量"><span class="toc-number">1.5.</span> <span class="toc-text">Variable 变量</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TensorFlow-进阶"><span class="toc-number">2.</span> <span class="toc-text">TensorFlow-进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#保存和加载模型"><span class="toc-number">2.1.</span> <span class="toc-text">保存和加载模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#保存"><span class="toc-number">2.1.1.</span> <span class="toc-text">保存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提取"><span class="toc-number">2.1.2.</span> <span class="toc-text">提取</span></a></li></ol></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 8 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2017/12/13/ThirdMax/" >ThirdMax</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/13</span><a class="archive-post-title" href= "/2017/12/13/DisappearNum/" >DisappearNum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/07</span><a class="archive-post-title" href= "/2017/12/07/Pascaltriangle/" >Pascaltriangle</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/10</span><a class="archive-post-title" href= "/2017/11/10/duplicate-md/" >duplicate.md</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/TensorFlow-define/" >Tensorflow define</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/Lee-code-merge-link/" >Lee code merge link</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/19</span><a class="archive-post-title" href= "/2017/10/19/Lee code two Sum/" >Two sum</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/2017/10/18/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">lee code</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">C++</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">LeeCode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">Leecode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">leecode</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">c++</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
